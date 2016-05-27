@@ -1,0 +1,65 @@
+[
+  {
+		"id" : "3601a987-b7c7-11e5-8496-eb1e24d873f4",
+		"email" : "email2@address.com",
+		"password" : "password",
+		"username" : "Unamed Hunter",
+		"score" : 402
+	},
+	{
+		"id" : "457c0a00-b7c7-11e5-a5ea-a7b24bf83c69",
+		"email" : "email3@address.com",
+		"password" : "password",
+		"username" : "Unamed Hunter",
+		"score" : 23
+	},
+	{
+		"id" : "4ee1e470-b7c7-11e5-9b21-75f1935b6027",
+		"email" : "email4@address.com",
+		"password" : "password",
+		"username" : "Unamed Hunter",
+		"score" : 40
+	},
+	{
+		"id" : "5adc9a90-b7c7-11e5-8096-25a16e231ef4",
+		"email" : "email5@address.com",
+		"password" : "password",
+		"username" : "Unamed Hunter",
+		"score" : 532
+	},
+	{
+		"id" : "6714cee0-b7c7-11e5-90cb-e743dca0b861",
+		"email" : "email6@address.com",
+		"password" : "password",
+		"username" : "Unamed Hunter",
+		"score" : 4
+	},
+	{
+		"id" : "715fd930-b7c7-11e5-bb63-67647d83bcba",
+		"email" : "email7@address.com",
+		"password" : "password",
+		"username" : "Unamed Hunter",
+		"score" : 1000
+	},
+	{
+		"id" : "7a9b9660-b7c7-11e5-96fe-45293ce0f7d6",
+		"email" : "email8@address.com",
+		"password" : "password",
+		"username" : "Unamed Hunter",
+		"score" : 100
+	},
+	{
+		"id" : "869d2a50-b7c7-11e5-9654-75ecb5cc51a9",
+		"email" : "email9@address.com",
+		"password" : "password",
+		"username" : "Unamed Hunter",
+		"score" : 87
+	},
+	{
+		"id" : "9045b310-b7c7-11e5-948b-9174eb869529",
+		"email" : "email0@address.com",
+		"password" : "password",
+		"username" : "Unamed Hunter",
+		"score" : 400
+	}
+]
