@@ -1,0 +1,23 @@
+{
+  "name": "pp-leaderboard",
+  "version": "1.0.0",
+  "description": "Leaderboard microservice",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "author": "Tom Tollinton",
+  "license": "ISC",
+  "devDependencies": {
+    "rewire": "^2.5.1",
+    "supertest": "^1.2.0"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "fakeredis": "^1.0.3",
+    "highland": "^2.8.1",
+    "ramda": "^0.21.0",
+    "redis": "^2.6.0-2",
+    "restify": "^4.1.0"
+  }
+}
