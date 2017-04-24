@@ -1,9 +1,14 @@
-FROM mhart/alpine-node:5.9.0
+FROM node:latest
 
-RUN npm install --production
+# Install app dependencies
+RUN npm install yarn -g
+COPY package.json /src/package.json
 
+# Bundle app source
 COPY . /src
 
-EXPOSE 8080
+WORKDIR /src
+RUN yarn --production
 
-CMD npm start
+EXPOSE 8080
+CMD [ "npm", "start" ]

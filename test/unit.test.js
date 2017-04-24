@@ -1,7 +1,7 @@
 "use strict";
 
-var config = require("../config/default.js");
-var lb = require("../leaderboard")(config.redis);
+var db = require("../src/db/redis")();
+var lb = require("../src/leaderboard")(db);
 var assert = require("chai").assert;
 var R = require("ramda");
 

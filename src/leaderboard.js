@@ -2,10 +2,9 @@
 
 var R = require("ramda");
 var hl = require("highland");
-var redis = require("./database/index");
 
 const valueScoreToPairReduce = (acc, value) => {
-    if (acc.length && Object.keys(R.last(acc)).length % 2) {
+    if(acc.length && Object.keys(R.last(acc)).length % 2) {
         acc[acc.length - 1] = R.assoc("score", value, R.last(acc));
     } else {
         acc.push({"id": value})
@@ -13,8 +12,8 @@ const valueScoreToPairReduce = (acc, value) => {
     return acc;
 };
 
-module.exports = config => {
-    const db = redis(config);
+module.exports = db => {
+
     return {
         "getByScore": R.curry((key, min, max, limit) => {
             return db.zrevrangebyscoreStream(key, max, min, "WITHSCORES", "LIMIT", 0, limit)
@@ -44,8 +43,5 @@ module.exports = config => {
         "getRank": (key, leader) => {
             return db.zrevrankStream(key, leader.id);
         }
-
-    };
+    }
 };
-
-
