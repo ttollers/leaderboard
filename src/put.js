@@ -1,6 +1,6 @@
 "use strict";
 
-const { curry } = require("Ramda");
+const { curry } = require("ramda");
 
 module.exports = curry((db, req, res) => {
   const key = req.params.key;
