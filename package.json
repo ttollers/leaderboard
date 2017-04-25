@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha --recursive",
-    "start": "node server.js"
+    "start": "ls && ls src && node src/server.js"
   },
   "author": "Tom Tollinton",
   "license": "ISC",

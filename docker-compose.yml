@@ -1,12 +1,12 @@
 
 version: '2'
 services:
-  news_db:
+  db:
     image: redis
     ports:
       - "6379:6379"
 
 #  api:
-#    build: .
+#    build: ./
 #    ports:
 #      - "80:8080"

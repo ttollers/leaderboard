@@ -3,9 +3,9 @@
 A RESTFUL Leaderboard API built using Node.js and Redis.
 
 ## Run
+The easiest method is to use docker compose that will build a redis and a node container. API available at localhost:8080
 ```
-npm install
-npm start
+docker-compose up -d
 ```
 
 # Add an item
@@ -34,3 +34,5 @@ Useful for getting an item's direct competitors
 ```
 GET /:leaderboard_name/around/:id
 ```
+
+TODO: Error Handling

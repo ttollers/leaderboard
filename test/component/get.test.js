@@ -1,15 +1,15 @@
 "use strict";
 
 const request = require("supertest");
-const app = require("../src/server");
-const db = require("../src/db/redis")();
+const app = require("../../src/server");
+const db = require("../../src/db/redis")();
 const assert = require("chai").assert;
 const server = request(app(db));
 const R = require("ramda");
 const hl = require("highland");
 
 
-describe.only("Component", () => {
+describe("Get Component tests", () => {
 
   // only necessary if using local redis instance
   const flushAll = done => db.flushallStream().done(done);
