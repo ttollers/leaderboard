@@ -10,15 +10,14 @@
   "author": "Tom Tollinton",
   "license": "ISC",
   "devDependencies": {
+    "chai": "^3.5.0",
+    "fakeredis": "^1.0.3",
     "rewire": "^2.5.1",
     "supertest": "^1.2.0"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
-    "chai": "^3.5.0",
-    "config": "^1.21.0",
     "express": "^4.15.2",
-    "fakeredis": "^1.0.3",
     "highland": "^2.8.1",
     "ramda": "^0.21.0",
     "redis": "^2.6.0-2"
