@@ -1,11 +1,8 @@
 "use strict";
 
-const { curry, reduce, last, assoc, merge } = require("ramda");
-const hl = require("highland");
-
+const { curry, max } = require("ramda");
 
 module.exports = {
-
 
   "byId": curry((db, req, res) => {
     const { key, id } = req.params;
@@ -15,29 +12,18 @@ module.exports = {
         if (err) console.log(err);
         res.send(result)
       })
-
   }),
 
   "byRank": curry((db, req, res) => {
     const key = req.params.key || "leaderboard";
     const start = Number(req.query.start) || 0;
     const stop = Number(req.query.stop) || 10;
-    
-    db.zrevrangeStream(key, start, stop, "WITHSCORES")
-      .map(reduce((acc, value) => {
-        if (acc.length && Object.keys(last(acc)).length % 2) {
-          acc[acc.length - 1] = assoc("score", value, last(acc));
-        } else {
-          acc.push({"id": value})
-        }
-        return acc;
-      }, []))
-      .flatMap(hl)
-      .flatMap(leader => {
-        return db.getStream(`${key}_${leader.id}`)
-          .map(JSON.parse)
-          .map(merge(leader))
-      })
+
+    db.zrevrangeStream(key, start, stop)
+      .sequence()
+      .map(id => db.getStream(`${key}_${id}`))
+      .parallel(10)
+      .map(JSON.parse)
       .collect()
       .toCallback((e, leaders) => {
         if (e) {
@@ -55,25 +41,22 @@ module.exports = {
     const below = Number(req.query.below) || 5;
     const above = Number(req.query.above) || 5;
 
-    Lb.getRank(key, {"id": userId})
+    db.zrevrankStream(key, userId)
       .flatMap(rank => {
-        var start = rank - below;
-        var stop = rank + above;
-        if (start < 0) {
-          stop = stop + Math.abs(start);
-          start = 0;
-        }
-        return db.zrevrangeStream(key, start, stop, "WITHSCORES")
-          .map(reduce(valueScoreToPairReduce, []))
-          .flatMap(hl);
+        var start = max(rank - above, 0);
+        var stop = rank + below;
+        return db.zrevrangeStream(key, start, stop);
       })
-      .flatMap(Lb.getById)
+      .sequence()
+      .map(id => db.getStream(`${key}_${id}`))
+      .merge()
+      .map(JSON.parse)
       .collect()
       .toCallback((e, leaders) => {
         if (e) {
           res.send(500, e);
         } else {
-          res.send(200, leaders);
+          res.send(leaders);
         }
       })
   })
