@@ -49,14 +49,14 @@ describe("Get Component tests", () => {
           foo: "bar"
         };
         return db.setStream(`leaderboard_${item.id}`, JSON.stringify(item))
-          .flatMap(() => db.zaddStream(`leaderboard`, item.score, item.id))
+          .flatMap(() => db.zaddStream("leaderboard", item.score, item.id));
       });
       hl(streams)
         .merge()
         .done(done);
     });
 
-    it("gets all 5 top leaders", (done) => {
+    it("gets all 5 top leaders", done => {
       server
         .get("/leaderboard?start=0&stop=4")
         .expect(200)
@@ -67,7 +67,7 @@ describe("Get Component tests", () => {
           assert.equal(items[0].score, 50);
           assert.equal(items[0].foo, "bar");
           done();
-        })
+        });
     });
   });
 
@@ -81,14 +81,14 @@ describe("Get Component tests", () => {
           foo: "bar"
         };
         return db.setStream(`leaderboard_${item.id}`, JSON.stringify(item))
-          .flatMap(() => db.zaddStream(`leaderboard`, item.score, item.id))
+          .flatMap(() => db.zaddStream("leaderboard", item.score, item.id));
       });
       hl(streams)
         .merge()
         .done(done);
     });
 
-    it("should get items surrounding by rank", (done) => {
+    it("should get items surrounding by rank", done => {
       server
         .get("/leaderboard/around/abc_3?below=2&above=1")
         .expect(200)
@@ -103,7 +103,7 @@ describe("Get Component tests", () => {
           assert.equal(items[2].id, "abc_2");
           assert.equal(items[3].id, "abc_1");
           done();
-        })
+        });
     });
   });
 });

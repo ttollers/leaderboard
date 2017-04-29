@@ -8,7 +8,7 @@ module.exports = {
 
     db.zremStream(key, id)
       .flatMap(() => db.delStream(`${key}_${id}`))
-      .toCallback((err, result) => {
+      .done(() => {
         res.sendStatus(204);
       });
   })

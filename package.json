@@ -4,13 +4,14 @@
   "description": "Leaderboard microservice",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --recursive",
-    "start": "ls && ls src && node src/server.js"
+    "test": "eslint . && mocha --recursive",
+    "start": "node src/server.js"
   },
   "author": "Tom Tollinton",
   "license": "ISC",
   "devDependencies": {
     "chai": "^3.5.0",
+    "eslint": "^3.19.0",
     "fakeredis": "^1.0.3",
     "rewire": "^2.5.1",
     "supertest": "^1.2.0"

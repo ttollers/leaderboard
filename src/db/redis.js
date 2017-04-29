@@ -1,7 +1,7 @@
 "use strict";
 
-var hl = require("highland");
-const redis = require('redis');
+const hl = require("highland");
+const redis = require("redis");
 const { merge } = require("ramda");
 
 module.exports = (config = {}) => {

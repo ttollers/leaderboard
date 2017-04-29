@@ -9,13 +9,16 @@ module.exports = {
     return db.getStream(`${key}_${id}`)
       .map(JSON.parse)
       .toCallback((err, result) => {
-        if (err) console.log(err);
-        res.send(result)
-      })
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          res.send(result);
+        }
+      });
   }),
 
   "byRank": curry((db, req, res) => {
-    const key = req.params.key || "leaderboard";
+    const key = req.params.key;
     const start = Number(req.query.start) || 0;
     const stop = Number(req.query.stop) || 10;
 
@@ -31,7 +34,7 @@ module.exports = {
         } else {
           res.send(leaders);
         }
-      })
+      });
   }),
 
   "getAround": curry((db, req, res) => {
@@ -43,8 +46,8 @@ module.exports = {
 
     db.zrevrankStream(key, userId)
       .flatMap(rank => {
-        var start = max(rank - above, 0);
-        var stop = rank + below;
+        const start = max(rank - above, 0);
+        const stop = rank + below;
         return db.zrevrangeStream(key, start, stop);
       })
       .sequence()
@@ -58,6 +61,6 @@ module.exports = {
         } else {
           res.send(leaders);
         }
-      })
+      });
   })
 };

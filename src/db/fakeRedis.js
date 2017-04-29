@@ -1,7 +1,7 @@
 "use strict";
 
 const hl = require("highland");
-let fakeRedis = require("fakeredis");
+const fakeRedis = require("fakeredis");
 
 module.exports = () => {
   fakeRedis.fast = true;
