@@ -2,16 +2,16 @@
 
 const request = require("supertest");
 const app = require("../../src/server");
-const db = require("../../src/db/redis")();
+const db = require("../../src/db/fakeRedis")();
 const assert = require("chai").assert;
 const server = request(app(db));
 
 describe("Put Component Tests", () => {
 
   // Only necessary if using local redis instance
-  const flushAll = done => db.flushallStream().done(done);
-  before(flushAll);
-  afterEach(flushAll);
+  //const flushAll = done => db.flushallStream().done(done);
+  //before(flushAll);
+  //afterEach(flushAll);
 
   describe("PUT create /:key", () => {
 
