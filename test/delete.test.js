@@ -1,8 +1,8 @@
 "use strict";
 
 const request = require("supertest");
-const app = require("../../src/server");
-const db = require("../../src/db/fakeRedis")();
+const app = require("../src/server");
+const db = require("../src/db/fakeRedis")();
 const assert = require("chai").assert;
 const server = request(app(db));
 
