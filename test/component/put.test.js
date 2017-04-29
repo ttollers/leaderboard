@@ -38,5 +38,19 @@ describe("Put Component Tests", () => {
             .done(done);
         });
     });
+
+    it("fails if item is invalid (no score)", done => {
+      server
+        .put("/leaderboard")
+        .send({
+          id: "abc_1"
+        })
+        .expect(400)
+        .end((err, res) => {
+          assert.ok(res.error);
+          assert.equal(res.body[0].message, "\"score\" is required");
+          done();
+        });
+    });
   });
 });
