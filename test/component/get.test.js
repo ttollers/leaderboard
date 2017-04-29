@@ -8,7 +8,7 @@ const server = request(app(db));
 const R = require("ramda");
 const hl = require("highland");
 
-describe.only("Get Component tests", () => {
+describe("Get Component tests", () => {
 
   // only necessary if using local redis instance
   //const flushAll = done => db.flushallStream().done(done);
